@@ -52,7 +52,9 @@ export default function App() {
     window.addEventListener('scroll', onScroll)
 
     return () => {
-      typedRef.current.destroy()
+      if (typedRef.current && typeof typedRef.current.destroy === 'function') {
+        typedRef.current.destroy()
+      }
       window.removeEventListener('scroll', onScroll)
     }
   }, [])
@@ -154,7 +156,7 @@ export default function App() {
               </div>
             </div>
             <div className="hero-card">
-              <img src="/profile-pic1.jpg" alt="Profile" />
+              <img src={import.meta.env.BASE_URL + 'profile-pic1.jpg'} alt="Profile" />
               <div className="bio-card">
                 <h3>Bio</h3>
                 <p>

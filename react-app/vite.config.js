@@ -5,6 +5,7 @@ export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
 
   return defineConfig({
+    base: process.env.VITE_BASE || '/',
     plugins: [react()],
     server: {
       host: process.env.VITE_HOST || 'localhost'
