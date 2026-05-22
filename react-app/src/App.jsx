@@ -156,7 +156,7 @@ export default function App() {
               </div>
             </div>
             <div className="hero-card">
-              <img src={import.meta.env.BASE_URL + 'profile-pic1.jpg'} alt="Profile" />
+              <img src={`${import.meta.env.BASE_URL}profile-pic1.jpg`} alt="Profile" />
               <div className="bio-card">
                 <h3>Bio</h3>
                 <p>
