@@ -41,19 +41,46 @@ robocopy dist .. /E /NFL /NDL /NJH /NJS /NC /NS /NP
 
 ## Deploying
 
-Recommended: deploy the `dist` folder from the Vite build. Two common options:
+Recommended: deploy the `dist` folder from the Vite build. Choose your platform:
 
-- Netlify / Vercel: Connect the repo and use build command `npm run build` and publish directory `dist`.
-- GitHub Pages: set `VITE_BASE` to your repo name (e.g. `/my-repo/`) and run:
+### Vercel (Recommended)
+
+1. Push your code to GitHub (or GitLab/Bitbucket).
+2. Go to [vercel.com](https://vercel.com) and sign in.
+3. Click **Add New** → **Project**.
+4. Select your repository and import it.
+5. Vercel will auto-detect the build command and output directory from `vercel.json`.
+6. Click **Deploy**.
+
+**That's it!** No additional configuration needed. The `vercel.json` file handles build settings.
+
+### Netlify
+
+1. Connect your GitHub repo to [netlify.com](https://netlify.com).
+2. Build command: `npm run build`
+3. Publish directory: `dist`
+4. Deploy.
+
+The `netlify.toml` file also configures this for you.
+
+### GitHub Pages
+
+Set the base path and deploy:
 
 ```bash
 cd "react-app"
+VITE_BASE='/my-repo/' npm run build
 npm install --save-dev gh-pages
 npm run deploy:gh-pages
 ```
 
-Notes:
-- You can set `VITE_BASE` in CI or locally: `VITE_BASE='/my-repo/' npm run build`.
-- For Netlify, no base path is required; just use `npm run build`.
+Replace `my-repo` with your actual repository name.
 
-If you'd like, I can add a `netlify.toml` or automate GitHub Actions for deploy.
+### Manual Deploy
+
+Build locally and upload the `dist` folder to any static host:
+
+```bash
+npm run build
+# Upload dist/ folder to your host
+```
